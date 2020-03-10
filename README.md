@@ -15,6 +15,7 @@
     patch -p1 < ../patches/lt-ps-log_open_file-reopen_all.patch
     patch -p0 < ../patches/client_list.cc.patch 
     patch -p1 < ../patches/tixati_peer.patch
+    patch -p1 < ../patches/custom_peer_id.patch
 
     cat ../HACK
 
