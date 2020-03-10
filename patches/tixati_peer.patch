@@ -1,0 +1,61 @@
+diff -ru libtorrent-0.12.9-new/src/torrent/peer/client_info.cc libtorrent-0.12.9/src/torrent/peer/client_info.cc
+--- libtorrent-0.12.9-new/src/torrent/peer/client_info.cc	2011-04-05 11:25:52.000000000 +0100
++++ libtorrent-0.12.9/src/torrent/peer/client_info.cc	2015-04-28 20:00:48.869652237 +0100
+@@ -45,6 +45,8 @@
+ unsigned int
+ ClientInfo::key_size(id_type id) {
+   switch (id) {
++  case TYPE_TIXATI:
++    return 3;
+   case TYPE_AZUREUS:
+     return 2;
+   case TYPE_COMPACT:
+@@ -60,6 +62,7 @@
+ ClientInfo::version_size(id_type id) {
+   switch (id) {
+   case TYPE_AZUREUS:
++  case TYPE_TIXATI:
+     return 4;
+   case TYPE_COMPACT:
+   case TYPE_MAINLINE:
+diff -ru libtorrent-0.12.9-new/src/torrent/peer/client_info.h libtorrent-0.12.9/src/torrent/peer/client_info.h
+--- libtorrent-0.12.9-new/src/torrent/peer/client_info.h	2011-04-05 11:25:52.000000000 +0100
++++ libtorrent-0.12.9/src/torrent/peer/client_info.h	2015-04-28 19:58:25.841649405 +0100
+@@ -50,6 +50,7 @@
+     TYPE_AZUREUS,
+     TYPE_COMPACT,
+     TYPE_MAINLINE,
++    TYPE_TIXATI,
+     TYPE_MAX_SIZE
+   } id_type;
+ 
+diff -ru libtorrent-0.12.9-new/src/torrent/peer/client_list.cc libtorrent-0.12.9/src/torrent/peer/client_list.cc
+--- libtorrent-0.12.9-new/src/torrent/peer/client_list.cc	2015-04-28 19:58:00.745648718 +0100
++++ libtorrent-0.12.9/src/torrent/peer/client_list.cc	2015-04-28 19:59:03.245648695 +0100
+@@ -147,6 +147,8 @@
+ 
+   insert_helper(ClientInfo::TYPE_MAINLINE, "M", NULL, NULL, "Mainline");
+ 
++  insert_helper(ClientInfo::TYPE_TIXATI, "TIX", NULL, NULL, "Tixati");
++
+   insert_helper(ClientInfo::TYPE_COMPACT, "T", NULL, NULL, "BitTornado");
+   insert_helper(ClientInfo::TYPE_COMPACT, "A", NULL, NULL, "ABC");
+   insert_helper(ClientInfo::TYPE_COMPACT, "S", NULL, NULL, "Shadow's client");
+@@ -222,6 +224,16 @@
+ 
+     for (int i = 0; i < 4; i++)
+       dest->mutable_version()[i] = dest->mutable_upper_version()[i] = rak::hexchar_to_value(id[3 + i]);
++
++  } else if (id[0] == 'T' && id[1] == 'I' && id[2] == 'X' && id[7] == '-' &&
++             std::isxdigit(id[3]) && std::isxdigit(id[4]) && std::isxdigit(id[5]) && std::isxdigit(id[6])) {
++    dest->set_type(ClientInfo::TYPE_TIXATI);
++    dest->mutable_key()[0] = id[0];
++    dest->mutable_key()[1] = id[1];
++    dest->mutable_key()[2] = id[2];
++
++    for (int i = 0; i < 4; i++)
++      dest->mutable_version()[i] = dest->mutable_upper_version()[i] = rak::hexchar_to_value(id[3 + i]);
+ 
+   } else if (id[0] == '-' && id[6] == '-' &&
+              std::isalpha(id[1]) && std::isalpha(id[2]) &&
+Only in libtorrent-0.12.9/src/torrent/peer/: client_list.cc.orig
