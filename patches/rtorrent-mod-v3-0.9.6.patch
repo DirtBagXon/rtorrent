@@ -1,6 +1,6 @@
-diff -ruN rtorrent-0.9.6/src/command_download.cc rtorrent-0.9.6-mod-V3/src/command_download.cc
+diff -ruN rtorrent-0.9.6/src/command_download.cc rtorrent-0.9.6-modV3/src/command_download.cc
 --- rtorrent-0.9.6/src/command_download.cc	2015-09-03 20:03:30.000000000 +0100
-+++ rtorrent-0.9.6-mod-V3/src/command_download.cc	2020-03-10 11:44:52.176933855 +0000
++++ rtorrent-0.9.6-modV3/src/command_download.cc	2020-03-11 10:46:47.382404068 +0000
 @@ -5,12 +5,12 @@
  // it under the terms of the GNU General Public License as published by
  // the Free Software Foundation; either version 2 of the License, or
@@ -25,18 +25,9 @@ diff -ruN rtorrent-0.9.6/src/command_download.cc rtorrent-0.9.6-mod-V3/src/comma
    if (type.empty())
      throw torrent::input_error("Invalid arguments.");
  
-@@ -219,7 +219,7 @@
-   case 2:
-     return "normal";
-   case 3:
--    return "high";
-+    return "high";
-   default:
-     throw torrent::input_error("Priority out of range.");
-   }
-diff -ruN rtorrent-0.9.6/src/display/canvas.cc rtorrent-0.9.6-mod-V3/src/display/canvas.cc
+diff -ruN rtorrent-0.9.6/src/display/canvas.cc rtorrent-0.9.6-modV3/src/display/canvas.cc
 --- rtorrent-0.9.6/src/display/canvas.cc	2015-08-08 16:40:41.000000000 +0100
-+++ rtorrent-0.9.6-mod-V3/src/display/canvas.cc	2020-03-10 11:44:52.176933855 +0000
++++ rtorrent-0.9.6-modV3/src/display/canvas.cc	2020-03-11 10:46:47.386404054 +0000
 @@ -5,12 +5,12 @@
  // it under the terms of the GNU General Public License as published by
  // the Free Software Foundation; either version 2 of the License, or
@@ -81,9 +72,9 @@ diff -ruN rtorrent-0.9.6/src/display/canvas.cc rtorrent-0.9.6-mod-V3/src/display
    m_isInitialized = false;
  
    noraw();
-diff -ruN rtorrent-0.9.6/src/display/canvas.h rtorrent-0.9.6-mod-V3/src/display/canvas.h
+diff -ruN rtorrent-0.9.6/src/display/canvas.h rtorrent-0.9.6-modV3/src/display/canvas.h
 --- rtorrent-0.9.6/src/display/canvas.h	2015-08-08 16:40:41.000000000 +0100
-+++ rtorrent-0.9.6-mod-V3/src/display/canvas.h	2020-03-10 11:44:52.176933855 +0000
++++ rtorrent-0.9.6-modV3/src/display/canvas.h	2020-03-11 10:46:47.386404054 +0000
 @@ -5,12 +5,12 @@
  // it under the terms of the GNU General Public License as published by
  // the Free Software Foundation; either version 2 of the License, or
@@ -108,9 +99,9 @@ diff -ruN rtorrent-0.9.6/src/display/canvas.h rtorrent-0.9.6-mod-V3/src/display/
    ~Canvas() { delwin(m_window); }
  
    void                refresh()                                               { wnoutrefresh(m_window); }
-diff -ruN rtorrent-0.9.6/src/display/utils.cc rtorrent-0.9.6-mod-V3/src/display/utils.cc
+diff -ruN rtorrent-0.9.6/src/display/utils.cc rtorrent-0.9.6-modV3/src/display/utils.cc
 --- rtorrent-0.9.6/src/display/utils.cc	2015-08-08 16:40:41.000000000 +0100
-+++ rtorrent-0.9.6-mod-V3/src/display/utils.cc	2020-03-10 11:45:30.192780813 +0000
++++ rtorrent-0.9.6-modV3/src/display/utils.cc	2020-03-11 10:46:47.386404054 +0000
 @@ -5,12 +5,12 @@
  // it under the terms of the GNU General Public License as published by
  // the Free Software Foundation; either version 2 of the License, or
@@ -378,9 +369,9 @@ diff -ruN rtorrent-0.9.6/src/display/utils.cc rtorrent-0.9.6-mod-V3/src/display/
    first = print_buffer(first, last, " [F %i/%i]",
                         torrent::file_manager()->open_files(),
                         torrent::file_manager()->max_open_files());
-diff -ruN rtorrent-0.9.6/src/display/utils.h rtorrent-0.9.6-mod-V3/src/display/utils.h
+diff -ruN rtorrent-0.9.6/src/display/utils.h rtorrent-0.9.6-modV3/src/display/utils.h
 --- rtorrent-0.9.6/src/display/utils.h	2015-08-08 16:40:41.000000000 +0100
-+++ rtorrent-0.9.6-mod-V3/src/display/utils.h	2020-03-10 11:44:52.176933855 +0000
++++ rtorrent-0.9.6-modV3/src/display/utils.h	2020-03-11 10:46:47.386404054 +0000
 @@ -5,12 +5,12 @@
  // it under the terms of the GNU General Public License as published by
  // the Free Software Foundation; either version 2 of the License, or
@@ -406,9 +397,9 @@ diff -ruN rtorrent-0.9.6/src/display/utils.h rtorrent-0.9.6-mod-V3/src/display/u
  char*       print_download_status(char* first, char* last, core::Download* d);
  char*       print_download_time_left(char* first, char* last, core::Download* d);
  char*       print_download_percentage_done(char* first, char* last, core::Download* d);
-diff -ruN rtorrent-0.9.6/src/display/window_download_list.cc rtorrent-0.9.6-mod-V3/src/display/window_download_list.cc
+diff -ruN rtorrent-0.9.6/src/display/window_download_list.cc rtorrent-0.9.6-modV3/src/display/window_download_list.cc
 --- rtorrent-0.9.6/src/display/window_download_list.cc	2015-09-03 20:03:30.000000000 +0100
-+++ rtorrent-0.9.6-mod-V3/src/display/window_download_list.cc	2020-03-10 11:44:52.176933855 +0000
++++ rtorrent-0.9.6-modV3/src/display/window_download_list.cc	2020-03-11 10:47:09.838321626 +0000
 @@ -5,12 +5,12 @@
  // it under the terms of the GNU General Public License as published by
  // the Free Software Foundation; either version 2 of the License, or
@@ -509,7 +500,7 @@ diff -ruN rtorrent-0.9.6/src/display/window_download_list.cc rtorrent-0.9.6-mod-
 +
 +       //print info extra
 +       print_download_info_extra(buffer, last, *range.first);
-+       m_canvas->print((m_canvas->width() - 16), pos++, "%s", buffer);
++       m_canvas->print((m_canvas->width() - 17), pos++, "%s", buffer);
 +
 +    }
 +    else {
@@ -524,9 +515,9 @@ diff -ruN rtorrent-0.9.6/src/display/window_download_list.cc rtorrent-0.9.6-mod-
 -
 + }
  }
-diff -ruN rtorrent-0.9.6/src/display/window_title.cc rtorrent-0.9.6-mod-V3/src/display/window_title.cc
+diff -ruN rtorrent-0.9.6/src/display/window_title.cc rtorrent-0.9.6-modV3/src/display/window_title.cc
 --- rtorrent-0.9.6/src/display/window_title.cc	2015-08-08 16:40:41.000000000 +0100
-+++ rtorrent-0.9.6-mod-V3/src/display/window_title.cc	2020-03-10 11:44:52.176933855 +0000
++++ rtorrent-0.9.6-modV3/src/display/window_title.cc	2020-03-11 10:46:47.386404054 +0000
 @@ -5,12 +5,12 @@
  // it under the terms of the GNU General Public License as published by
  // the Free Software Foundation; either version 2 of the License, or
@@ -552,9 +543,9 @@ diff -ruN rtorrent-0.9.6/src/display/window_title.cc rtorrent-0.9.6-mod-V3/src/d
  }
  
  }
-diff -ruN rtorrent-0.9.6/src/ui/download_list.cc rtorrent-0.9.6-mod-V3/src/ui/download_list.cc
+diff -ruN rtorrent-0.9.6/src/ui/download_list.cc rtorrent-0.9.6-modV3/src/ui/download_list.cc
 --- rtorrent-0.9.6/src/ui/download_list.cc	2015-09-03 20:03:30.000000000 +0100
-+++ rtorrent-0.9.6-mod-V3/src/ui/download_list.cc	2020-03-10 11:44:52.176933855 +0000
++++ rtorrent-0.9.6-modV3/src/ui/download_list.cc	2020-03-11 10:46:47.386404054 +0000
 @@ -5,12 +5,12 @@
  // it under the terms of the GNU General Public License as published by
  // the Free Software Foundation; either version 2 of the License, or
