@@ -33,7 +33,7 @@
     patch -p1 < ../patches/rtorrent-mod-v3-0.9.6.patch
     patch -p1 < ../patches/rtorrent-0.9.6_vi_keybinding_tjwoosta.patch
     patch -p1 < ../patches/rt-base-cppunit-pkgconfig.patch
-    patch -p1 < ../patches/geoip-rtorrent0.9.6_mmdb.patch
+    patch -p1 < ../patches/rtorrent-0.9.6_geo_mmdb.patch
     patch -p1 < ../patches/lt-backport_0.9.6_algorithm_median.patch
     patch -p1 < ../patches/rt-backport_0.9.7_add_temp_filter-CH.patch
 
@@ -47,6 +47,8 @@
 ### Misc
 
 *Alternate patch for color - Requires .rtorrent.rc config*
+
+Install in place of `rtorrent-mod-v3-0.9.6.patch`
 
     patch -p1 < ../patches/color_requires_config.patch
 
